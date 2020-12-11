@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>PEMILIHAN</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="../../../../assets/img/icon.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="../../../../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['../assets/css/fonts.min.css'] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="../../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../../assets/css/atlantis2.css">
+    <style>
+        /* table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+        } */
+        .my-custom-scrollbar {
+        position: relative;
+        height: 500px;
+        overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+        display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+
+        <div class="main-header" data-background-color="purple">
+            <div class="nav-top">
+                <div class="container d-flex flex-row">
+                    <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
+                        data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon">
+                            <i class="icon-menu"></i>
+                        </span>
+                    </button>
+                    <button class="topbar-toggler more"><i class="icon-options-vertical"></i></button>
+                    <!-- Logo Header -->
+                    <a href="index.html" class="logo d-flex align-items-center">
+
+                    </a>
+                    <!-- End Logo Header -->
+
+                    <!-- Navbar Header -->
+                    <nav class="navbar navbar-header navbar-expand-lg p-0">
+                    </nav>
+                    <!-- End Navbar -->
+                </div>
+            </div>
+
+        </div>
+
+        <div class="main-panel">
+            <div class="container">
+                <div class="page-inner">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="card-head-row">
+                                            <div class="card-title">Pilih Calon Anda ( Maksimal 32 Orang)</div>
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="chart-container" style="min-height: 375px" id="app">
+                                            <div class="row">
+                                                <div class="card-tools">
+                                                    <!-- <button @click.prevent="store" class="btn btn-info btn-border btn-round">
+                                                        <span class="btn-label">
+                                                            <i class="fas fa-check-circle"></i>
+                                                        </span>
+                                                        Selesai
+                                                    </button> -->
+                                                    <a href="#" type="button" class="btn btn-info btn-border btn-round" data-toggle="modal" data-target="#konfirm">
+                                                        <span class="btn-label">
+                                                            <i class="fas fa-check-circle"></i>
+                                                        </span>
+                                                        Selesai
+                                                    </a>
+                                                    <div class="modal fade" id="konfirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabel">Anda yakin keluar Aplikasi ?</h5>
+                                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">×</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">APAKAH ANDA SUDAH YAKIN DENGAN PILIHAN ANDA ??.</div>
+                                                                <div class="modal-footer">
+                                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                                                    <button type="submit" class="d-none" id='logout'></button>
+                                                                    <a class="btn btn-primary" href="#" @click.prevent="store">YAKIN !!</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-4 col-sm-4 col-lg-2">
+                                                    <div class="card">
+                                                        <div class="card-body p-3 text-center">
+                                                            <div class="h1 m-0"><strong>{{ userIds.length }}</strong></div>
+                                                            <div class="text-muted mb-3">Calon Dipilih</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                            <table 
+                                                class="table table-bordered table-striped mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="th-sm">Nomor
+                                                        </th>
+                                                        <th class="th-sm">Nama
+                                                        </th>
+                                                        <th>Pilihan</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="user in users">
+                                                        <td>{{ user.nomor_urut }}</td>
+                                                        <td>{{ user.name }}</td>
+                                                        
+                                                        <td><input type="checkbox" v-model="userIds" :value="user.id"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            </div>
+                                        </div>
+                                        <div id="myChartLegend"></div>
+                                    </div>
+                                </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    
+    
+    <!--   Core JS Files   -->
+    <script src="../../../../assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="../../../../assets/js/core/popper.min.js"></script>
+    <script src="../../../../assets/js/core/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="../../../../assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="../../../../assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="../../../../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+    <!-- Moment JS -->
+    <script src="../../../../assets/js/plugin/moment/moment.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="../../../../assets/js/plugin/chart.js/chart.min.js"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="../../../../assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+    <!-- Chart Circle -->
+    <script src="../../../../assets/js/plugin/chart-circle/circles.min.js"></script>
+
+    <!-- Datatables -->
+    <script src="../../../../assets/js/plugin/datatables/datatables.min.js"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="../../../../assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+    <!-- Bootstrap Toggle -->
+    <script src="../../../../assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="../../../../assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+    <script src="../../../../assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+
+    <!-- Google Maps Plugin -->
+    <script src="../../../../assets/js/plugin/gmaps/gmaps.js"></script>
+
+    <!-- Dropzone -->
+    <script src="../../../../assets/js/plugin/dropzone/dropzone.min.js"></script>
+
+    <!-- Fullcalendar -->
+    <script src="../../../../assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+
+    <!-- DateTimePicker -->
+    <script src="../../../../assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+
+    <!-- Bootstrap Tagsinput -->
+    <script src="../../../../assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+    <!-- Bootstrap Wizard -->
+    <script src="../../../../assets/js/plugin/bootstrap-wizard/bootstrapwizard.js"></script>
+
+    <!-- jQuery Validation -->
+    <script src="../../../../assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+
+    <!-- Summernote -->
+    <script src="../../../../assets/js/plugin/summernote/summernote-bs4.min.js"></script>
+
+    <!-- Select2 -->
+    <script src="../../../../assets/js/plugin/select2/select2.full.min.js"></script>
+
+    <!-- Sweet Alert -->
+    <script src="../../../../assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+    <!-- Atlantis JS -->
+    <script src="../../../../assets/js/atlantis2.min.js"></script>
+
+    <!-- <script src="/public/js/vue.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                users: [],
+                selected: [],
+                allSelected: false,
+                userIds: []
+            },
+            methods: {
+                selectAll: function () {
+                    this.userIds = [];
+
+                    if (!this.allSelected) {
+                        for (user in this.users) {
+                            this.userIds.push(this.users[user].id);
+                        }
+                    }
+                },
+                store() {
+
+                    let users = this.userIds
+                    axios.post('http://192.168.100.1/SISTEM_VOTE_SIMULASI/api/datacalon-post', {
+                        users
+                    })
+                        .then(response => {
+
+                            console.log(response.data.message);
+                            if (response.data.status == 'failed') {
+                                swal.fire({
+                                    position: 'center',
+                                    title: 'TERJADI KESALAHAN',
+                                    text: response.data.message,
+                                    icon: 'error',
+                                });
+                            }else{
+                                location.href = "http://192.168.100.1/SISTEM_VOTE_SIMULASI/"
+                            }
+
+                        }).catch(error => {
+                            console.log(error);
+                        })
+
+                    // for (var key in users) {
+                    //     console.log(users[key]);
+                    // }
+
+                }
+            },
+            created() {
+                axios.get('http://192.168.100.1/SISTEM_VOTE_SIMULASI/api/datacalon')
+                    .then(response => {
+                        this.users = response.data
+                    })
+            },
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+                $('#dtVerticalScrollExample').DataTable({
+                    "scrollY": "200px",
+                    "scrollCollapse": true,
+                });
+                $('.dataTables_length').addClass('bs-select');
+            });
+    </script>
+</body>
+
+</html>
